@@ -1,5 +1,10 @@
 export type CharStatus = "CORRECT" | "INCORRECT" | "PRESENT" | "DEFAULT";
 
+export interface Status {
+  value: string
+  status: CharStatus
+}
+
 export const keyStatuses = {
   "A": "DEFAULT" as CharStatus,
   "B": "DEFAULT" as CharStatus,
