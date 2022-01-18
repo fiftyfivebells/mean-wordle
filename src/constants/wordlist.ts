@@ -5757,3 +5757,5 @@ export const fiveLetterWords = [
   "biffy",
   "pupal"
 ]
+
+export const fiveLetterWordSet = new Set(fiveLetterWords);
