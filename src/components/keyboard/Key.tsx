@@ -1,13 +1,15 @@
-
 import { Button } from "@mui/material";
-import { CharStatus } from "../../lib/status"
+import { CharStatus } from "../../lib/status";
 import { KeyProps } from "../../lib/keyboard";
 
-export default function Key({ value, status, handleClick }: KeyProps): JSX.Element {
-
+export default function Key({
+  value,
+  status,
+  handleClick,
+}: KeyProps): JSX.Element {
   const styles = {
     backgroundColor: "white",
-    color: "white"
+    color: "white",
   };
 
   if (status === "CORRECT") {
@@ -19,14 +21,9 @@ export default function Key({ value, status, handleClick }: KeyProps): JSX.Eleme
   } else {
     styles.color = "black";
   }
-  
+
   return (
-    <Button
-      sx={styles}
-      onClick={handleClick}
-      value={value}
-      variant="outlined"
-    >
+    <Button sx={styles} onClick={handleClick} value={value} variant="outlined">
       {value}
     </Button>
   );
