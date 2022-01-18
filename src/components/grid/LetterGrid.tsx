@@ -11,7 +11,7 @@ export default function LetterGrid({ currentGuess, guesses, keyStatus }:
     guess.split("").forEach((char) => {
       const key = {
         value: char,
-        status: keyStatus[char]
+        status: "DEFAULT" as CharStatus
       }
       guessStatus.push(key);
     });
