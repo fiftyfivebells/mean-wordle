@@ -3,9 +3,9 @@ import GridRow from "./GridRow"
 import { CharStatus, Status } from "../../lib/status"
 
 export default function LetterGrid({ currentGuess, guesses, keyStatus }:
-  { currentGuess: string, guesses: string[], keyStatus: { [value: string]: CharStatus } }): JSX.Element {
+  { currentGuess: string, guesses: Status[][], keyStatus: { [value: string]: CharStatus } }): JSX.Element {
 
-  function addStatusToGuess(guess: string): Status[] {
+  function addStatusToCurrentGuess(guess: string): Status[] {
     const guessStatus: Status[] = [];
 
     guess.split("").forEach((char) => {
@@ -19,10 +19,7 @@ export default function LetterGrid({ currentGuess, guesses, keyStatus }:
     return guessStatus;
   }
 
-  const guessesWithStatus = guesses.map(guess => addStatusToGuess(guess));
-  const guessWithStatus = addStatusToGuess(currentGuess);
-  
-  const completedRows: JSX.Element[] = guessesWithStatus.map((guess, i) => {
+  const completedRows: JSX.Element[] = guesses.map((guess, i) => {
     return <GridRow key={i} characters={guess} />
   });
   const empties: number = 5 - guesses.length;
@@ -34,7 +31,7 @@ export default function LetterGrid({ currentGuess, guesses, keyStatus }:
       alignItems="center"
     >
       {completedRows}
-      <GridRow characters={guessWithStatus} />
+      <GridRow characters={addStatusToCurrentGuess(currentGuess)} />
       {emptyRows}
     </Stack>
   );
