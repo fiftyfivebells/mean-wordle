@@ -48,6 +48,56 @@ function App() {
 
     return guessWithStatus;
   }
+
+  function handleValue(e?: React.MouseEvent | null, key?: string): void {
+    if (isGameWon) {
+      return;
+    }
+
+    let nextChar = "";
+    if (e) {
+      const event = e.target as HTMLInputElement;
+      nextChar = event.value;
+    } else if (key) {
+      nextChar = key;
+    }
+
+    if (currentGuess.length < 5) {
+      setCurrentGuess(`${currentGuess}${nextChar}`);
+    }
+  }
+
+  function handleDelete(): void {
+    setCurrentGuess(currentGuess.slice(0, -1));
+  }
+
+  function handleEnter(): void {
+    const isWinner = wordOfDay === currentGuess;
+
+    if (currentGuess.length === 5) {
+      if (!isWordInWordList(currentGuess.toLowerCase())) {
+        setIsNotAWordModalOpen(true);
+        setTimeout(() => {
+          setIsNotAWordModalOpen(false);
+        }, 2000);
+        return;
+      } 
+
+      updateStatuses();
+      setGuesses([...guesses, addStatusToGuess(currentGuess)]);
+      setCurrentGuess("");
+
+      if (isWinner) {
+        setIsGameWon(true);
+        setIsWinModalOpen(true);
+        setTimeout(() => {
+          setIsWinModalOpen(false);
+        }, 2000);
+        return;
+      }
+    }
+  }
+
   return (
     <>
     </>
