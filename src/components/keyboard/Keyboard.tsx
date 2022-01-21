@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import { CharStatus } from "../../lib/status";
 import { KeyProps, KeyboardProps } from "../../lib/keyboard";
 import KeyboardRow from "./KeyboardRow";
+import React from "react";
 
 export default function Keyboard({
   handleValue,
@@ -13,6 +14,28 @@ export default function Keyboard({
     const e = event.target as HTMLInputElement;
     console.log(e.value);
   }
+
+  React.useEffect(() => {
+    function eventListener(event: KeyboardEvent) {
+      const { key, code } = event;
+
+      if (code === "Enter") {
+        handleEnter();
+      } else if (code === "Delete" || code === "Backspace") {
+        handleDelete();
+      } else if (
+        key.length === 1 &&
+        key.toUpperCase() >= "A" &&
+        key.toUpperCase() <= "Z"
+      ) {
+        handleValue(undefined, key.toUpperCase());
+      }
+    }
+    window.addEventListener("keyup", eventListener);
+    return () => {
+      window.removeEventListener("keyup", eventListener);
+    };
+  }, [handleEnter, handleDelete, handleValue]);
 
   function makeKeyRow(values: string[]): KeyProps[] {
     const row: KeyProps[] = [];
