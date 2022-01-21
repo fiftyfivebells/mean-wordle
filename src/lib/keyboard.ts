@@ -8,8 +8,8 @@ export interface KeyProps {
 }
 
 export interface KeyboardProps {
-  handleEnter: (e: React.MouseEvent) => void
-  handleDelete: (e: React.MouseEvent) => void
-  handleValue: (e: React.MouseEvent) => void
-  keyStatus: { [key: string]: CharStatus }
+  handleEnter: () => void;
+  handleDelete: () => void;
+  handleValue: (e?: React.MouseEvent | null, key?: string) => void;
+  keyStatus: { [key: string]: CharStatus };
 }
