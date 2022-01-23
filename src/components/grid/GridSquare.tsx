@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import { Status } from "../../lib/status";
 
 export default function GridSquare({
@@ -6,26 +6,38 @@ export default function GridSquare({
   status = "DEFAULT",
 }: Status): JSX.Element {
   const styles = {
-    border: "solid 1px black",
-    width: "40px",
-    height: "40px",
-    backgroundColor: "white",
+    display: "inline-flex",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "2rem",
+    lineHeight: "2rem",
+    fontWeight: "bold",
+    border: "",
+    backgroundColor: "",
     color: "white",
+    minWidth: "20px",
   };
 
   if (status === "CORRECT") {
-    styles.backgroundColor = "green";
+    styles.backgroundColor = "#6aaa64";
+    styles.border = "";
   } else if (status === "PRESENT") {
-    styles.backgroundColor = "yellow";
+    styles.backgroundColor = "#c9b458";
   } else if (status === "INCORRECT") {
-    styles.backgroundColor = "gray";
+    styles.backgroundColor = "#939598";
+  } else if (status === "FAKE") {
+    styles.backgroundColor = "#de1c18";
   } else {
+    styles.border = "solid 2px #d3d6da";
     styles.color = "black";
   }
 
   return (
-    <Box sx={styles}>
+    <div style={styles}>{value}</div>
+
+    /*     <Stack sx={styles} flexGrow={1} justifyContent="center" alignItems="center">
       <strong>{value}</strong>
-    </Box>
+    </Stack> */
   );
 }

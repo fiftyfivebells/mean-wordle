@@ -1,11 +1,14 @@
-import { Grid, Stack } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 import { Status } from "../../lib/status";
 import GridSquare from "./GridSquare";
 
-export default function GridRow({ characters = [] }: { characters?: Status[] }): JSX.Element {
-
+export default function GridRow({
+  characters = [],
+}: {
+  characters?: Status[];
+}): JSX.Element {
   const squares = characters.map((char, i) => {
-    return <GridSquare key={i} {...char} />
+    return <GridSquare key={i} {...char} />;
   });
 
   // Handle the case of a guess in progress (has empty squares)
@@ -15,13 +18,18 @@ export default function GridRow({ characters = [] }: { characters?: Status[] }):
     }
   }
 
+  const rowStyle = {
+    display: "flex",
+    gridGap: "5px",
+    flex: 1
+  };
+
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      alignContent="center"
-    >
+    <div style={rowStyle}>
       {squares}
-    </Stack>
+    </div>
+/*     <Stack direction="row" spacing={1} flex={1} sx={{ display: "flex" }}>
+      {squares}
+    </Stack> */
   );
 }

@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 import GridRow from "./GridRow";
 import { CharStatus, Status } from "../../lib/status";
 
@@ -36,11 +36,33 @@ export default function LetterGrid({
           .fill(0)
           .map((_, i) => <GridRow key={i} />);
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    overflow: "hidden"
+  }
+          
+  const gridStyle = {
+    width: "350px",
+    height: "420px",
+    display: "flex",
+    gridGap: "5px",
+    padding: "10px",
+    boxSizing: "border-box",
+    flexShrink: 1
+  }
+          
   return (
-    <Stack direction="column" alignItems="center">
-      {completedRows}
-      {guesses.length < 6 && <GridRow characters={addStatusToCurrentGuess(currentGuess)} />}
-      {(empties > -1) && emptyRows}
-    </Stack>
+    <div style={containerStyle}>
+       <Stack sx={gridStyle}>
+        {completedRows}
+        {guesses.length < 6 && (
+          <GridRow characters={addStatusToCurrentGuess(currentGuess)} />
+        )}
+        {empties > -1 && emptyRows}
+        </Stack>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { CharStatus } from "../../lib/status";
 import { KeyProps, KeyboardProps } from "../../lib/keyboard";
 import KeyboardRow from "./KeyboardRow";
@@ -63,14 +63,14 @@ export default function Keyboard({
 
   const rows = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-    ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    ["", "A", "S", "D", "F", "G", "H", "J", "K", "L", ""],
     ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DELETE"],
   ];
 
   const keys = rows.map((row) => makeKeyRow(row));
 
   return (
-    <Stack direction="column" alignItems="center">
+    <Stack spacing={0.5} sx={{ padding: "10px", margin: "0 8px", maxHeight: "200px" }}>
       {keys.map((row, i) => {
         return <KeyboardRow key={i} keyList={row} />;
       })}
