@@ -48,7 +48,11 @@ function App() {
     );
   }
 
-    return guessWithStatus;
+  function checkIfUsingIncorrect(): boolean {
+    const guessArray = currentGuess.split("");
+    return getLetterStatus("INCORRECT").some(
+      (letter) => guessArray.indexOf(letter) !== -1
+    );
   }
 
   function handleValue(e?: React.MouseEvent | null, key?: string): void {
