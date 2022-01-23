@@ -26,21 +26,19 @@ function App() {
     setKeyStatus(newStatus);
   }
 
-  function addStatusToGuess(word: string): Status[] {
-    const guessWithStatus: Status[] = [];
-    const letterSet: Set<string> = new Set(wordOfDay);
+  function setInvalidWordStatus(word: string): Status[] {
+    const newStatus: Status[] = [];
 
-    currentGuess.split("").forEach((letter, i) => {
+    word.split("").forEach((w) => {
       const char = {
-        value: letter,
-        status: "DEFAULT" as CharStatus,
+        value: w,
+        status: "FAKE" as CharStatus,
       };
-      if (letter === wordOfDay[i]) {
-        char.status = "CORRECT" as CharStatus;
-      } else if (letterSet.has(letter)) {
-        char.status = "PRESENT" as CharStatus;
-      } else {
-        char.status = "INCORRECT" as CharStatus;
+      newStatus.push(char);
+    });
+
+    return newStatus;
+  }
       }
 
       guessWithStatus.push(char);
