@@ -39,6 +39,15 @@ function App() {
 
     return newStatus;
   }
+
+  function getLetterStatus(status: CharStatus): string[] {
+    const letters: string[] = [];
+    for (const [key, val] of Object.entries(keyStatus)) {
+      if (val === status) {
+        letters.push(key);
+      }
+    }
+    return letters;
       }
 
       guessWithStatus.push(char);
