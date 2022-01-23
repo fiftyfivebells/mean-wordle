@@ -76,6 +76,8 @@ function App() {
 
     if (currentGuess.length === 5) {
       if (!isWordInWordList(currentGuess.toLowerCase())) {
+        setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+        setCurrentGuess("");
         setIsNotAWordModalOpen(true);
         setTimeout(() => {
           setIsNotAWordModalOpen(false);
