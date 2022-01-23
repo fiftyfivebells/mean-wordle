@@ -91,8 +91,38 @@ function App() {
         return;
       } 
 
+      if (!checkIfUsingStatus("PRESENT")) {
+        setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+        setCurrentGuess("");
+        setIsNotPresentOpen(true);
+        setTimeout(() => {
+          setIsNotPresentOpen(false);
+        }, 3000);
+        return;
+      }
+
+      if (!checkIfUsingStatus("CORRECT")) {
+        setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+        setCurrentGuess("");
+        setIsNotCorrectOpen(true);
+        setTimeout(() => {
+          setIsNotCorrectOpen(false);
+        }, 3000);
+        return;
+      }
+
+      if (checkIfUsingIncorrect()) {
+        setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+        setCurrentGuess("");
+        setIsUsingBadLettersOpen(true);
+        setTimeout(() => {
+          setIsUsingBadLettersOpen(false);
+        }, 3000);
+        return;
+      }
+
       updateStatuses();
-      setGuesses([...guesses, addStatusToGuess(currentGuess)]);
+      setGuesses([...guesses, addStatusToGuess(currentGuess, wordOfDay)]);
       setCurrentGuess("");
 
       if (isWinner) {
