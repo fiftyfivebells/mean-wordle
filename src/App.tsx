@@ -39,19 +39,14 @@ function App() {
 
     return newStatus;
   }
-
-  function getLetterStatus(status: CharStatus): string[] {
-    const letters: string[] = [];
-    for (const [key, val] of Object.entries(keyStatus)) {
-      if (val === status) {
-        letters.push(key);
-      }
-    }
-    return letters;
       }
 
-      guessWithStatus.push(char);
-    });
+  function checkIfUsingStatus(status: CharStatus): boolean {
+    const guessArray = currentGuess.split("");
+    return getLetterStatus(status).every(
+      (letter) => guessArray.indexOf(letter) !== -1
+    );
+  }
 
     return guessWithStatus;
   }
