@@ -9,10 +9,6 @@ export default function Keyboard({
   handleDelete,
   keyStatus,
 }: KeyboardProps): JSX.Element {
-  function handleClick(event: React.MouseEvent): void {
-    const e = event.target as HTMLInputElement;
-    console.log(e.value);
-  }
 
   React.useEffect(() => {
     function eventListener(event: KeyboardEvent) {
