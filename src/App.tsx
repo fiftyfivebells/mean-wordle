@@ -193,6 +193,7 @@ function App() {
     handleEnter: handleEnter,
     keyStatus: keyStatus,
   };
+
   return (
     <Stack
       justifyContent="space-between"
@@ -204,8 +205,12 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="error">
-          <AlertTitle>Incorrect word</AlertTitle>
+          <AlertTitle>
+            <Typography variant="h6">Incorrect Word</Typography>
+          </AlertTitle>
+          <Typography>
           The word {currentGuess} does not exist. You just lost a turn.
+          </Typography>
         </Alert>
       </Snackbar>
       <Snackbar
@@ -213,9 +218,13 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="error">
-          <AlertTitle>Bad letters</AlertTitle>
-          You can't use letters that you know aren't in the word. You just lost
-          a turn.
+          <AlertTitle>
+            <Typography variant="h6">Bad Letters</Typography>
+          </AlertTitle>
+          <Typography>
+            You can't use letters that you know aren't in the word. You just
+            lost a turn.
+          </Typography>
         </Alert>
       </Snackbar>
       <Snackbar
@@ -223,9 +232,13 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="error">
-          <AlertTitle>Missting letters</AlertTitle>
+          <AlertTitle>
+            <Typography variant="h6">Missing Letters</Typography>
+          </AlertTitle>
+          <Typography>
           You are not using letters you know are in the right place. You just
           lost a turn.
+          </Typography>
         </Alert>
       </Snackbar>
       <Snackbar
@@ -233,9 +246,13 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="error">
-          <AlertTitle>Missting letters</AlertTitle>
+          <AlertTitle>
+            <Typography variant="h6">Missing Letters</Typography>
+          </AlertTitle>
+          <Typography>
           Your guess should contain all letters you know are present. You just
           lost a turn.
+          </Typography>
         </Alert>
       </Snackbar>
       <Snackbar
@@ -243,8 +260,10 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="success">
-          <AlertTitle>You won!</AlertTitle>
-          You beat Mean Wordle!
+          <AlertTitle>
+            <Typography variant="h6">You Won!</Typography>
+          </AlertTitle>
+          <Typography>You beat Mean Wordle!</Typography>
         </Alert>
       </Snackbar>
       <Snackbar
@@ -252,8 +271,12 @@ function App() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert severity="error">
-          <AlertTitle>You Lost!</AlertTitle>
+          <AlertTitle>
+            <Typography variant="h6">You Lost!</Typography>
+          </AlertTitle>
+          <Typography>
           You were beaten by Mean Wordle! The correct word was {wordOfDay}.
+          </Typography>
         </Alert>
       </Snackbar>
       <RulesModal isOpen={isRulesOpen} setIsOpen={setIsRulesOpen} />
