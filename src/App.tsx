@@ -15,6 +15,9 @@ function App() {
   const [guesses, setGuesses] = React.useState(Array<Status[]>());
   const [keyStatus, setKeyStatus] =
     React.useState<{ [key: string]: CharStatus }>(keyStatuses);
+
+  const wordOfDay = getWordOfDay().toUpperCase();
+
   function updateStatuses(): void {
     const newStatus: { [key: string]: CharStatus } = { ...keyStatus };
     const letterSet: Set<string> = new Set(wordOfDay);
