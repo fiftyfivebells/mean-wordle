@@ -28,7 +28,7 @@ function App() {
   const [keyStatus, setKeyStatus] =
     React.useState<{ [key: string]: CharStatus }>(keyStatuses);
 
-  const wordOfDay = getWordOfDay().toUpperCase();
+  const { word: wordOfDay, index: wordOfDayIndex } = getWordOfDay();
 
   function updateStatuses(): void {
     const newStatus: { [key: string]: CharStatus } = { ...keyStatus };
