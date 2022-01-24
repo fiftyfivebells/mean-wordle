@@ -1,7 +1,9 @@
 # Mean Wordle
 
-- The real Wordle can be found here: [here](https://www.powerlanguage.co.uk/wordle/)
-- A working demo of this app can be found here: <TODO>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3b51250e-33e4-4cf6-89d7-14782dc6db29/deploy-status)](https://app.netlify.com/sites/mean-wordle/deploys)
+
+- The real Wordle can be found [here](https://www.powerlanguage.co.uk/wordle/)
+- A working demo of this app can be found [here](https://mean-wordle.netlify.app)
 
 Wordle has exploded in popularity, but I found that it's missing one thing: it's not mean enough. This is a clone of the very popular game with a few extra rules that make it much less forgiving. The added rules are:
 * If you attempt a word that doesn't exist, you lose a turn and get no information from the letters
