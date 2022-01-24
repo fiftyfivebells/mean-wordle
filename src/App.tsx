@@ -3,6 +3,12 @@ import React from 'react';
 function App() {
   const [isNotAWordModalOpen, setIsNotAWordModalOpen] =
     React.useState<boolean>(false);
+  const [isUsingBadLettersOpen, setIsUsingBadLettersOpen] =
+    React.useState(false);
+  const [isGameLostOpen, setIsGameLostOpen] = React.useState(false);
+  const [isRulesOpen, setIsRulesOpen] = React.useState(false);
+  const [isNotCorrectOpen, setIsNotCorrectOpen] = React.useState(false);
+  const [isNotPresentOpen, setIsNotPresentOpen] = React.useState(false);
   const [isWinModalOpen, setIsWinModalOpen] = React.useState(false);
   const [isGameWon, setIsGameWon] = React.useState(false);
   const [currentGuess, setCurrentGuess] = React.useState("");
