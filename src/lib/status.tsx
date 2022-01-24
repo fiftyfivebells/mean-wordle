@@ -5,6 +5,28 @@ export interface Status {
   status: CharStatus;
 }
 
+export function addStatusToGuess( currentGuess: string, wordOfDay: string): Status[] {
+  const guessWithStatus: Status[] = [];
+  const letterSet: Set<string> = new Set(wordOfDay);
+
+  currentGuess.split("").forEach((letter, i) => {
+    const char = {
+      value: letter,
+      status: "DEFAULT" as CharStatus,
+    };
+    if (letter === wordOfDay[i]) {
+      char.status = "CORRECT" as CharStatus;
+    } else if (letterSet.has(letter)) {
+      char.status = "PRESENT" as CharStatus;
+    } else {
+      char.status = "INCORRECT" as CharStatus;
+    }
+
+    guessWithStatus.push(char);
+  });
+
+  return guessWithStatus;
+}
 export const keyStatuses: { [key: string]: CharStatus } = {
   A: "DEFAULT" as CharStatus,
   B: "DEFAULT" as CharStatus,
