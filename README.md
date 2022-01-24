@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# Mean Wordle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- The real Wordle can be found here: [here](https://www.powerlanguage.co.uk/wordle/)
+- A working demo of this app can be found here: <TODO>
+
+Wordle has exploded in popularity, but I found that it's missing one thing: it's not mean enough. This is a clone of the very popular game with a few extra rules that make it much less forgiving. The added rules are:
+* If you attempt a word that doesn't exist, you lose a turn and get no information from the letters
+* When a letter has been shown to be present in the word, you will lose a turn if you don't use it in future guesses
+* When a letter is in the correct place, you will lose a turn if you don't keep it in the same place
+* If you attempt a letter that you know isn't in the word, you will lose a turn
+
+These changes remove some of the more common strategies, like eliminating letters by guessing words you know can't be correct. It also punishes trying words that the player doesn't definitely know exist, because if they guess and it's wrong, they lose that turn. Essentially, it takes a fun little word game and adds some extra frustration.
 
 ## Available Scripts
 
