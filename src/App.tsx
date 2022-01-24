@@ -167,8 +167,76 @@ function App() {
     keyStatus: keyStatus,
   };
   return (
-    <>
-    </>
+    <Stack
+      justifyContent="space-between"
+      sx={{ margin: "0 auto", maxWidth: "500px", display: "flex" }}
+    >
+      <AppMenu setRulesOpen={setIsRulesOpen} />
+      <Snackbar
+        open={isNotAWordModalOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error">
+          <AlertTitle>Incorrect word</AlertTitle>
+          The word {currentGuess} does not exist. You just lost a turn.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isUsingBadLettersOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error">
+          <AlertTitle>Bad letters</AlertTitle>
+          You can't use letters that you know aren't in the word. You just lost
+          a turn.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isNotCorrectOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error">
+          <AlertTitle>Missting letters</AlertTitle>
+          You are not using letters you know are in the right place. You just
+          lost a turn.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isNotPresentOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error">
+          <AlertTitle>Missting letters</AlertTitle>
+          Your guess should contain all letters you know are present. You just
+          lost a turn.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isWinModalOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="success">
+          <AlertTitle>You won!</AlertTitle>
+          You beat Mean Wordle!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isGameLostOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error">
+          <AlertTitle>You Lost!</AlertTitle>
+          You were beaten by Mean Wordle! The correct word was {wordOfDay}.
+        </Alert>
+      </Snackbar>
+      <RulesModal isOpen={isRulesOpen} setIsOpen={setIsRulesOpen} />
+      <LetterGrid
+        currentGuess={currentGuess}
+        guesses={guesses}
+        keyStatus={keyStatus}
+      />
+      <Keyboard {...keyboardProps} />
+    </Stack>
   );
 }
 
