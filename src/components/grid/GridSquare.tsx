@@ -1,5 +1,15 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Status } from "../../lib/status";
+
+const theme = createTheme();
+
+theme.typography.body1 = {
+  fontSize: "1rem",
+  "@media (min-width:350px)": {
+    fontSize: "2rem",
+  },
+};
 
 export default function GridSquare({
   value,
@@ -10,8 +20,6 @@ export default function GridSquare({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "2rem",
-    lineHeight: "2rem",
     fontWeight: "bold",
     border: "",
     backgroundColor: "",
@@ -34,10 +42,10 @@ export default function GridSquare({
   }
 
   return (
-    <div style={styles}>{value}</div>
-
-    /*     <Stack sx={styles} flexGrow={1} justifyContent="center" alignItems="center">
-      <strong>{value}</strong>
-    </Stack> */
+    <div style={styles}>
+      <ThemeProvider theme={theme}>
+        <Typography variant="body1">{value}</Typography>
+      </ThemeProvider>
+    </div>
   );
 }
