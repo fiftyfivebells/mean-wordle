@@ -112,7 +112,12 @@ function App() {
 
     if (currentGuess.length === 5) {
       if (guesses.length === 5) {
-        if (!isWordInWordList(currentGuess.toLowerCase()) || !checkIfUsingStatus("PRESENT") || !checkIfUsingStatus("CORRECT") || checkIfUsingIncorrect()) {
+        if (
+          !isWordInWordList(currentGuess.toLowerCase()) ||
+          !checkIfUsingStatus("PRESENT") ||
+          !checkIfUsingStatus("CORRECT") ||
+          checkIfUsingIncorrect()
+        ) {
           setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
           setCurrentGuess("");
           setIsGameLostOpen(true);
@@ -121,6 +126,7 @@ function App() {
           }, 2000);
         } 
       }
+
       if (!isWordInWordList(currentGuess.toLowerCase())) {
         setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
         setCurrentGuess("");
