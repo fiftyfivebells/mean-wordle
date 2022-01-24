@@ -1,11 +1,19 @@
-export type CharStatus = "CORRECT" | "INCORRECT" | "PRESENT" | "DEFAULT" | "FAKE";
+export type CharStatus =
+  | "CORRECT"
+  | "INCORRECT"
+  | "PRESENT"
+  | "DEFAULT"
+  | "FAKE";
 
 export interface Status {
   value: string;
   status: CharStatus;
 }
 
-export function addStatusToGuess( currentGuess: string, wordOfDay: string): Status[] {
+export function addStatusToGuess(
+  currentGuess: string,
+  wordOfDay: string
+): Status[] {
   const guessWithStatus: Status[] = [];
   const letterSet: Set<string> = new Set(wordOfDay);
 
@@ -27,6 +35,7 @@ export function addStatusToGuess( currentGuess: string, wordOfDay: string): Stat
 
   return guessWithStatus;
 }
+
 export const keyStatuses: { [key: string]: CharStatus } = {
   A: "DEFAULT" as CharStatus,
   B: "DEFAULT" as CharStatus,
