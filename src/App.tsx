@@ -90,6 +90,16 @@ function App() {
     const isWinner = wordOfDay === currentGuess;
 
     if (currentGuess.length === 5) {
+      if (guesses.length === 5) {
+        if (!isWordInWordList(currentGuess.toLowerCase()) || !checkIfUsingStatus("PRESENT") || !checkIfUsingStatus("CORRECT") || checkIfUsingIncorrect()) {
+          setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+          setCurrentGuess("");
+          setIsGameLostOpen(true);
+          setTimeout(() => {
+            setIsGameLostOpen(false);
+          }, 2000);
+        } 
+      }
       if (!isWordInWordList(currentGuess.toLowerCase())) {
         setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
         setCurrentGuess("");
@@ -141,6 +151,11 @@ function App() {
           setIsWinModalOpen(false);
         }, 2000);
         return;
+      } else if (guesses.length === 5) {
+        setIsGameLostOpen(true);
+        setTimeout(() => {
+          setIsGameLostOpen(false);
+        }, 3000);
       }
     }
   }
