@@ -1,5 +1,3 @@
-import { Button, Grid } from "@mui/material";
-import { CharStatus } from "../../lib/status";
 import { KeyProps } from "../../lib/keyboard";
 
 export default function Key({
