@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Stack, Typography } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-export default function AppMenu(): JSX.Element {
+export default function AppMenu({ setRulesOpen }: { setRulesOpen: (b: boolean) => void}): JSX.Element {
+    
   return (
     <AppBar
       position="static"
@@ -16,7 +18,12 @@ export default function AppMenu(): JSX.Element {
           backgroundColor: "",
         }}
       >
-        <IconButton edge="start" size="medium" sx={{ color: "#878a8c" }}>
+        <IconButton
+          edge="start"
+          size="medium"
+          onClick={() => setRulesOpen(true)}
+          sx={{ color: "#878a8c" }}
+        >
           <HelpOutlineIcon />
         </IconButton>
         <Stack justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
