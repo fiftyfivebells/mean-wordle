@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Stack, Typography } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import EqualizerIcon from "@mui/icons-material/Equalizer";

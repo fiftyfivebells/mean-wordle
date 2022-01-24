@@ -1,6 +1,5 @@
 import Key from "./Key";
-import { CharStatus } from "../../lib/status";
-import { Grid, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { KeyProps } from "../../lib/keyboard";
 
 export default function KeyboardRow({

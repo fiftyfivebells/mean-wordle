@@ -1,12 +1,9 @@
 import { forwardRef } from "react";
 import {
-  AppBar,
   Dialog,
   IconButton,
-  makeStyles,
   Slide,
   Stack,
-  Toolbar,
   Typography,
 } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";

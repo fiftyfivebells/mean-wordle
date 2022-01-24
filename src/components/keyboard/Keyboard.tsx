@@ -1,5 +1,4 @@
-import { Grid, Stack } from "@mui/material";
-import { CharStatus } from "../../lib/status";
+import { Stack } from "@mui/material";
 import { KeyProps, KeyboardProps } from "../../lib/keyboard";
 import KeyboardRow from "./KeyboardRow";
 import React from "react";
