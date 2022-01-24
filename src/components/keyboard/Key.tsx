@@ -56,8 +56,5 @@ export default function Key({
     </button>
     :
     <div style={styles}></div>
-    /* <Button sx={styles} onClick={handleClick} value={value} variant="text">
-      {value}
-    </Button> */
   );
 }
