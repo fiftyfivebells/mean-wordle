@@ -1,4 +1,4 @@
-export type CharStatus = "CORRECT" | "INCORRECT" | "PRESENT" | "DEFAULT";
+export type CharStatus = "CORRECT" | "INCORRECT" | "PRESENT" | "DEFAULT" | "FAKE";
 
 export interface Status {
   value: string;
