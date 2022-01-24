@@ -160,6 +160,12 @@ function App() {
     }
   }
 
+  const keyboardProps = {
+    handleValue: handleValue,
+    handleDelete: handleDelete,
+    handleEnter: handleEnter,
+    keyStatus: keyStatus,
+  };
   return (
     <>
     </>
