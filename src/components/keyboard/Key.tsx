@@ -49,7 +49,7 @@ export default function Key({
   
   return (
     value ?
-    <button style={styles} onClick={handleClick}>
+    <button style={styles} value={value} onClick={handleClick}>
       {value}
     </button>
     :
