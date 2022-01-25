@@ -22,9 +22,8 @@ export function addStatusToGuess(
       letterSet.add(wordOfDay[i]);
     }
   });
-  
+
   guessWithStatus.forEach((letter, i) => {
-    
     if (letterSet.has(letter.value) && letter.status !== "CORRECT") {
       letter.status = "PRESENT" as CharStatus;
     } else if (letter.status !== "CORRECT") {
@@ -49,7 +48,7 @@ function addCorrectStatus(currentGuess: string, wordOfDay: string) {
 
     guessWithCorrect.push(char);
   });
-  console.log(guessWithCorrect);
+
   return guessWithCorrect;
 }
 
