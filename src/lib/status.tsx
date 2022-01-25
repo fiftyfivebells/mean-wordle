@@ -14,8 +14,29 @@ export function addStatusToGuess(
   currentGuess: string,
   wordOfDay: string
 ): Status[] {
-  const guessWithStatus: Status[] = [];
-  const letterSet: Set<string> = new Set(wordOfDay);
+  const guessWithStatus: Status[] = addCorrectStatus(currentGuess, wordOfDay);
+  const letterSet: Set<string> = new Set();
+
+  guessWithStatus.forEach((letter, i) => {
+    if (letter.status !== "CORRECT") {
+      letterSet.add(wordOfDay[i]);
+    }
+  });
+  
+  guessWithStatus.forEach((letter, i) => {
+    
+    if (letterSet.has(letter.value) && letter.status !== "CORRECT") {
+      letter.status = "PRESENT" as CharStatus;
+    } else if (letter.status !== "CORRECT") {
+      letter.status = "INCORRECT" as CharStatus;
+    }
+  });
+
+  return guessWithStatus;
+}
+
+function addCorrectStatus(currentGuess: string, wordOfDay: string) {
+  const guessWithCorrect: Status[] = [];
 
   currentGuess.split("").forEach((letter, i) => {
     const char = {
@@ -23,17 +44,13 @@ export function addStatusToGuess(
       status: "DEFAULT" as CharStatus,
     };
     if (letter === wordOfDay[i]) {
-      char.status = "CORRECT" as CharStatus;
-    } else if (letterSet.has(letter)) {
-      char.status = "PRESENT" as CharStatus;
-    } else {
-      char.status = "INCORRECT" as CharStatus;
+      char.status = "CORRECT";
     }
 
-    guessWithStatus.push(char);
+    guessWithCorrect.push(char);
   });
-
-  return guessWithStatus;
+  console.log(guessWithCorrect);
+  return guessWithCorrect;
 }
 
 export const keyStatuses: { [key: string]: CharStatus } = {
