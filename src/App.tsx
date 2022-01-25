@@ -28,9 +28,9 @@ function App() {
   const [keyStatus, setKeyStatus] =
     React.useState<{ [key: string]: CharStatus }>(keyStatuses);
 
-  const { word: wordOfDay } = getWordOfDay();
-
-  function updateStatuses(): void {
+  //const { word: wordOfDay } = getWordOfDay();
+  const wordOfDay = "STEEL";
+  function updateKeyStatuses(): void {
     const newStatus: { [key: string]: CharStatus } = { ...keyStatus };
     const letterSet: Set<string> = new Set(wordOfDay);
 
@@ -167,7 +167,7 @@ function App() {
         return;
       }
 
-      updateStatuses();
+      updateKeyStatuses();
       setGuesses([...guesses, addStatusToGuess(currentGuess, wordOfDay)]);
       setCurrentGuess("");
 
