@@ -24,12 +24,15 @@ function App() {
   const [isWinModalOpen, setIsWinModalOpen] = React.useState(false);
   const [isGameWon, setIsGameWon] = React.useState(false);
   const [currentGuess, setCurrentGuess] = React.useState("");
+  const [correctChars, setCorrectChars] = React.useState<string[]>(
+    Array(5).fill("")
+  );
   const [guesses, setGuesses] = React.useState(Array<Status[]>());
   const [keyStatus, setKeyStatus] =
     React.useState<{ [key: string]: CharStatus }>(keyStatuses);
 
-  //const { word: wordOfDay } = getWordOfDay();
-  const wordOfDay = "STEEL";
+  const { word: wordOfDay } = getWordOfDay();
+ 
   function updateKeyStatuses(): void {
     const newStatus: { [key: string]: CharStatus } = { ...keyStatus };
     const letterSet: Set<string> = new Set(wordOfDay);
@@ -45,6 +48,29 @@ function App() {
     });
 
     setKeyStatus(newStatus);
+  }
+
+  function updateCorrectChars(guess: Status[]): void {
+    const newChars: string[] = Array(5).fill("");
+    guess.forEach((letter, i) => {
+      if (letter.status === "CORRECT") {
+        newChars[i] = letter.value;
+      }
+    });
+
+    setCorrectChars(newChars);
+  }
+
+  function usingOutOfPlaceLetter(): boolean {
+    let result = false;
+    currentGuess.split("").forEach((letter, i) => {
+      const index = correctChars.indexOf(letter);
+      if (index > -1 && index !== i) {
+        result = true;
+      }
+    });
+
+    return result;
   }
 
   function setInvalidWordStatus(word: string): Status[] {
@@ -69,7 +95,7 @@ function App() {
       }
     }
     return letters;
-      }
+  }
 
   function checkIfUsingStatus(status: CharStatus): boolean {
     const guessArray = currentGuess.split("");
@@ -116,7 +142,8 @@ function App() {
           !isWordInWordList(currentGuess.toLowerCase()) ||
           !checkIfUsingStatus("PRESENT") ||
           !checkIfUsingStatus("CORRECT") ||
-          checkIfUsingIncorrect()
+          checkIfUsingIncorrect() ||
+          usingOutOfPlaceLetter()
         ) {
           setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
           setCurrentGuess("");
@@ -124,7 +151,17 @@ function App() {
           setTimeout(() => {
             setIsGameLostOpen(false);
           }, 2000);
-        } 
+        }
+      }
+
+      if (usingOutOfPlaceLetter()) {
+        setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
+        setCurrentGuess("");
+        setIsNotCorrectOpen(true);
+        setTimeout(() => {
+          setIsNotCorrectOpen(false);
+        }, 2000);
+        return;
       }
 
       if (!isWordInWordList(currentGuess.toLowerCase())) {
@@ -135,7 +172,7 @@ function App() {
           setIsNotAWordModalOpen(false);
         }, 2000);
         return;
-      } 
+      }
 
       if (!checkIfUsingStatus("PRESENT")) {
         setGuesses([...guesses, setInvalidWordStatus(currentGuess)]);
@@ -168,6 +205,7 @@ function App() {
       }
 
       updateKeyStatuses();
+      updateCorrectChars(addStatusToGuess(currentGuess, wordOfDay));
       setGuesses([...guesses, addStatusToGuess(currentGuess, wordOfDay)]);
       setCurrentGuess("");
 
@@ -209,7 +247,7 @@ function App() {
             <Typography variant="h6">Incorrect Word</Typography>
           </AlertTitle>
           <Typography>
-          The word {currentGuess} does not exist. You just lost a turn.
+            The word {currentGuess} does not exist. You just lost a turn.
           </Typography>
         </Alert>
       </Snackbar>
@@ -236,8 +274,8 @@ function App() {
             <Typography variant="h6">Missing Letters</Typography>
           </AlertTitle>
           <Typography>
-          You are not using letters you know are in the right place. You just
-          lost a turn.
+            You are not using letters you know are in the right place. You just
+            lost a turn.
           </Typography>
         </Alert>
       </Snackbar>
@@ -250,8 +288,8 @@ function App() {
             <Typography variant="h6">Missing Letters</Typography>
           </AlertTitle>
           <Typography>
-          Your guess should contain all letters you know are present. You just
-          lost a turn.
+            Your guess should contain all letters you know are present. You just
+            lost a turn.
           </Typography>
         </Alert>
       </Snackbar>
@@ -275,7 +313,7 @@ function App() {
             <Typography variant="h6">You Lost!</Typography>
           </AlertTitle>
           <Typography>
-          You were beaten by Mean Wordle! The correct word was {wordOfDay}.
+            You were beaten by Mean Wordle! The correct word was {wordOfDay}.
           </Typography>
         </Alert>
       </Snackbar>
