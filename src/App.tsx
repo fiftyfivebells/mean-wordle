@@ -63,12 +63,13 @@ function App() {
 
   function usingOutOfPlaceLetter(): boolean {
     let result = false;
-    currentGuess.split("").forEach((letter, i) => {
-      const index = correctChars.indexOf(letter);
-      if (index > -1 && index !== i) {
+    const currentGuessArr = currentGuess.split("");
+
+    correctChars.forEach((char, i) => {
+      if (char && char !== currentGuessArr[i]) {
         result = true;
       }
-    });
+    })
 
     return result;
   }
